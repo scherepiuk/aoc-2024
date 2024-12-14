@@ -8,6 +8,8 @@ import (
 	"slices"
 	"strconv"
 	"strings"
+
+	"github.com/scherepiuk/aoc-2024/internal/common"
 )
 
 type Solution struct{}
@@ -23,7 +25,8 @@ func (Solution) FirstPart() error {
 
 	var distance int
 	for i, left := range input.left {
-		distance += absDistance(left, input.right[i])
+		dist, _ := common.AbsDistance(left, input.right[i])
+		distance += dist
 	}
 
 	fmt.Println(distance)
@@ -101,11 +104,4 @@ func parseLine(line string) (int, int, error) {
 	}
 
 	return left, right, nil
-}
-
-func absDistance(a, b int) int {
-	if a < b {
-		return b - a
-	}
-	return a - b
 }
